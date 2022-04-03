@@ -9,27 +9,40 @@ Created on Sun Apr  3 11:01:41 2022
 from termcolor import colored, cprint
 from colorama import Fore, Style, init
 import enchant
+from wonderwords import RandomWord
+r = RandomWord()
+print("###################################")
+print("Welcome to Wordle+")
+print("###################################")
+
+print("Play with 4, 5, or 6 letter words!")
+def enter_number():
+    try:
+        print("Enter in a number between 4 and 6")
+        num_letters = int(input())
+        if num_letters in (4,5,6):
+            return num_letters 
+        else:
+            print("Try again!")
+            enter_number()
+        # return num_letters
+    except ValueError:
+        print("Must be a number!!")
+        return enter_number()
+    
+num_letter = enter_number()
+print(f"You are now playing {num_letter}-letter Wordle")
+print("Remember you have six guesses!")
+
+word = r.word(word_min_length = num_letter, 
+              word_max_length = num_letter).upper()
 d = enchant.Dict("en_US")
-
-# init()
-
-# word = "SISSY"
-print("WORD TO GUESS")
-word = input().upper()
 
 
 def check_letter(letter_guess: str, index: int, guess_word: int, 
                  word: str) -> str:
     
-    # print(f"what is the word guessed? : {guess_word}")
-    # print(f"what is the letter entered? : {letter_guess}")
-    index_of_letter_guess = [p for p, c in enumerate(guess_word) if c == letter_guess]
-    # print(f"index of letter in guessed word: {index_of_letter_guess}")
-    
-    # print(f"final word: {word}")
-    index_of_letter_word = [p for p, c in enumerate(word) if c == letter_guess]
-    # print(f"index of letter in final word: {index_of_letter_word}")
-    
+    index_of_letter_word = [p for p, c in enumerate(word) if c == letter_guess]    
     
     if letter_guess in word:
         if index in index_of_letter_word:
@@ -57,14 +70,14 @@ def input_word():
         Word user has guessed.
 
     """
-    print("GUESSED WORD")
+    print("Guess the word!")
     guess_1 = input().upper()
     if d.check(guess_1):
         if len(guess_1) != 5:
-            print("length of word not 5. Please try again")
+            print("Length of word not 5. Please try again")
             return input_word()
         else:
-            print("Correct word length")
+            # print("Correct word length")
             return guess_1
     else:
         print("Word is not english. Please try again")
@@ -72,7 +85,7 @@ def input_word():
 
 def guess_correct(guess, word):
     # print(guess_1_split)
-    print("GUESS WORD MATCHES FINAL WORD")
+    # print("GUESS WORD MATCHES FINAL WORD")
     
     final_word = colored(word, 'green')
     # n+=1
@@ -101,17 +114,18 @@ def guess_word(word, n):
     if guess_1 != word:
         final_word = check_letters(guess_1_split, guess_1, word)
         n+=1
-        print(final_word)
-        print(f"GUESS: {n}")
+        print(f"Guess {n}: {final_word}")
+        # print(f"Guess number {n}")
         if n >= 6:
             exit()
         return guess_word(word, n)
     else:
         final_word = guess_correct(guess_1, word)
         n+=1
-        print(f"final_word: {final_word}")
-        print(f"word: {word}")
-        print(f"FINAL GUESS: {n}")
+        print(f"Guess {n}: {final_word}")
+        print("Congrats! You guessed the right word!")
+        # print(f"word: {word}")
+        # print(f"Final guess number {n}")
         return final_word, n
 
 guess_dict = {}
@@ -122,10 +136,10 @@ while True:
     # print(guess_1)
     if n == 0:
         final_word, n = guess_word(word, n)
-        print('yes')
+        # print('yes')
         break
     else:
-        print('no')
+        # print('no')
         break
 
 
