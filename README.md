@@ -3,8 +3,9 @@ Wordle with more options and levels of difficultly. Guess words that are not onl
 
 
 To play Wordle+ run the code alpha.py on the command-line
-  python alpha.py
-  
+```
+python alpha.py
+```
   
 Beta version will be implemented on a graphical interface (GUI)
 
