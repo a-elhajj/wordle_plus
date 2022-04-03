@@ -47,6 +47,7 @@ d = enchant.Dict("en_US")
 def check_letter(letter_guess: str, index: int, guess_word: int, 
                  word: str) -> str:
     """
+    Function that checks each letter in the guessed word to see if it matches
     
     Parameters
     ----------
@@ -80,7 +81,7 @@ def check_letter(letter_guess: str, index: int, guess_word: int,
 
 def input_word(n: int) -> int:
     """
-    Input word and check if it has length=5
+    Input guesses, and check for spelling and if word is in English dictionary
 
     Parameters
     ----------
@@ -110,8 +111,8 @@ def input_word(n: int) -> int:
 
 def guess_correct(word: str) -> str:    
     """
+    Word was guessed correctly. Changes text to green.
     
-
     Parameters
     ----------
     word : str
@@ -128,8 +129,9 @@ def guess_correct(word: str) -> str:
 
 def check_letters(guess_split: str, guess: str, word: str) -> str:
     """
+    Loops through all the letters in the word and uses check_letters()
+        to check if the letters match the word to guess.
     
-
     Parameters
     ----------
     guess_split : str
@@ -154,8 +156,8 @@ def check_letters(guess_split: str, guess: str, word: str) -> str:
 
 def guess_word(word: str, n: int):
     """
+    Main function
     
-
     Parameters
     ----------
     word : str
