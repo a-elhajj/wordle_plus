@@ -9,4 +9,4 @@ To play Wordle+ run the code alpha.py on the command-line
 Beta version will be implemented on a graphical interface (GUI)
 
 
-![alt text](https://github.com/[a-elhajj]/[wordle_plus]/blob/[main]/example.png?raw=true)
+![alt text](https://github.com/a-elhajj/wordle_plus/blob/main/example.png?raw=true)
