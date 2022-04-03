@@ -54,7 +54,7 @@ def check_letter(letter_guess: str, index: int, guess_word: int,
     return letter
 
 
-def input_word():
+def input_word(n):
     """
     Input word and check if it has length=5
 
@@ -64,17 +64,20 @@ def input_word():
         Word user has guessed.
 
     """
-    print("Guess the word!")
+    if n > 0:
+        print("Try again!")
+    else:
+        print("Guess the word!")
     guess_1 = input().upper()
     if d.check(guess_1):
         if len(guess_1) != 5:
             print("Length of word not 5. Please try again")
-            return input_word()
+            return input_word(n)
         else:
             return guess_1
     else:
         print("Word is not english. Please try again")
-        return input_word()
+        return input_word(n)
 
 def guess_correct(guess, word):    
     final_word = colored(word, 'green')
@@ -91,13 +94,14 @@ def check_letters(guess_split, guess, word):
     return final_word
 
 def guess_word(word, n):
-    guess_1 = input_word()
+    guess_1 = input_word(n)
     guess_1_split = list(guess_1)
     if guess_1 != word:
         final_word = check_letters(guess_1_split, guess_1, word)
         n+=1
         print(f"Guess {n}: {final_word}")
         if n >= 6:
+            print("You lose!")
             exit()
         return guess_word(word, n)
     else:
