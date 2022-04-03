@@ -7,12 +7,13 @@ Created on Sun Apr  3 11:01:41 2022
 """
 
 from termcolor import colored
+
 import enchant
 from wonderwords import RandomWord
 r = RandomWord()
-print("###################################")
+print("#########################################")
 print("Welcome to Wordle+")
-print("###################################")
+print("#########################################")
 
 print("Play with 4, 5, or 6 letter words!")
 def enter_number():
@@ -179,6 +180,7 @@ def guess_word(word: str, n: int):
         print(f"Guess {n}: {final_word}")
         if n >= 6:
             print("You lose!")
+            print(f"Word was: {word}")
             exit()
         return guess_word(word, n)
     else:
